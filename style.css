@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f4f7;
+  margin: 0;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+
+.btn-primary {
+  background: #1f6feb;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.zona {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.zona-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.zona-header h2 {
+  margin: 0;
+}
+
+.zona-avance {
+  font-weight: bold;
+}
+
+.actividad {
+  display: grid;
+  grid-template-columns: 1fr 80px 80px 140px;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.actividad:last-child {
+  border-bottom: none;
+}
+
+.actividad input,
+.actividad select {
+  width: 100%;
+}
+
+.semaforo {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.semaforo.rojo { background: #dc2626; }
+.semaforo.amarillo { background: #facc15; }
+.semaforo.verde { background: #16a34a; }
+
+.estado {
+  display: flex;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  font-size: 12px;
+}
+
+.btn-small {
+  background: #e5e7eb;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
