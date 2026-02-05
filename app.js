@@ -90,7 +90,10 @@ function render() {
         <div class="actividad">
   <div class="actividad">
   <div>
-    <strong>${i + 1}. ${a.nombre}</strong><br>
+   <div class="actividad-titulo">
+  ${i + 1}. ${a.nombre}
+</div>
+
     <small>${a.fecha}</small>
     <textarea
       placeholder="Observación"
@@ -141,4 +144,5 @@ function render() {
 }
 
 render();
+
 
