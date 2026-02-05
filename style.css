@@ -103,30 +103,7 @@ button:active {
   font-weight: bold;
 }
 
-/* ACTIVIDADES */
-.actividad {
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 12px;
-  background: #F9FAFB;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
 
-/* ACT HEADER */
-.actividad strong {
-  font-size: 15px;
-}
-
-/* CHECK + ESTADO */
-.actividad-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
 
 /* SEMÁFORO */
 .semaforo {
@@ -277,6 +254,106 @@ button:active {
     padding: 5px 8px;
   }
 }
+/* =========================
+   ACTIVIDAD (CARD)
+========================= */
+
+.actividad {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  margin-top: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border-left: 6px solid #ff7a00;
+}
+
+/* INFO */
+.actividad-info {
+  flex: 1;
+}
+
+/* TÍTULO */
+.actividad-titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+/* TEXTAREA */
+.actividad textarea {
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   FOOTER / ESTADO
+========================= */
+
+.actividad-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 90px;
+}
+
+/* CHECK */
+.check-actividad {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  accent-color: #16A34A;
+}
+
+/* ESTADO TEXTO */
+.estado-texto {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* =========================
+   BARRA DE PROGRESO
+========================= */
+
+.barra-actividad {
+  width: 80px;
+  height: 6px;
+  background: #E5E7EB;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.barra-progreso {
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.barra-progreso.rojo { background: #DC2626; }
+.barra-progreso.amarillo { background: #FACC15; }
+.barra-progreso.verde { background: #16A34A; }
+
+/* =========================
+   MOBILE FIRST
+========================= */
+
+@media (max-width: 600px) {
+  .actividad {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .actividad-footer {
+    min-width: 70px;
+  }
+}
+
 
 
 
