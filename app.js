@@ -1,11 +1,11 @@
 let zonas = JSON.parse(localStorage.getItem("zonas")) || [];
 
-function saveData() {
+function guardar() {
   localStorage.setItem("zonas", JSON.stringify(zonas));
 }
 
-function addZona() {
-  const nombre = prompt("Nombre de la zona:");
+function crearZona() {
+  const nombre = document.getElementById("zonaNombre").value;
   if (!nombre) return;
 
   zonas.push({
@@ -13,12 +13,13 @@ function addZona() {
     actividades: []
   });
 
-  saveData();
+  document.getElementById("zonaNombre").value = "";
+  guardar();
   render();
 }
 
-function addActividad(zIndex) {
-  const nombre = prompt("Nombre de la actividad:");
+function crearActividad(zIndex, inputId) {
+  const nombre = document.getElementById(inputId).value;
   if (!nombre) return;
 
   const acts = zonas[zIndex].actividades;
@@ -27,27 +28,27 @@ function addActividad(zIndex) {
     nombre,
     peso: 0,
     avance: 0,
-    estado: "Pendiente",
-    comentario: ""
+    comentario: "",
+    fecha: new Date().toLocaleDateString()
   });
 
-  // 🔑 REPARTO AUTOMÁTICO DE PESOS
-  const pesoIgual = Math.round(100 / acts.length);
-  acts.forEach(a => a.peso = pesoIgual);
+  // PESOS IGUALES AUTOMÁTICOS
+  const peso = Math.round(100 / acts.length);
+  acts.forEach(a => a.peso = peso);
 
-  saveData();
+  guardar();
   render();
 }
 
-function semaforoEstado(avance) {
+function estado(avance) {
   if (avance >= 100) return "verde";
   if (avance > 0) return "amarillo";
   return "rojo";
 }
 
 function render() {
-  const app = document.getElementById("app");
-  app.innerHTML = "";
+  const cont = document.getElementById("zonas");
+  cont.innerHTML = "";
 
   zonas.forEach((zona, zIndex) => {
     let avanceZona = 0;
@@ -56,41 +57,49 @@ function render() {
       avanceZona += (a.avance * a.peso) / 100;
     });
 
-    const zonaDiv = document.createElement("div");
-    zonaDiv.className = "zona";
+    const div = document.createElement("div");
+    div.className = "card zona";
 
-    zonaDiv.innerHTML = `
+    div.innerHTML = `
       <div class="zona-header">
         <h2>${zona.nombre}</h2>
         <div class="zona-avance">${avanceZona.toFixed(1)}%</div>
       </div>
 
-      ${zona.actividades.map((a, i) => `
+      ${zona.actividades
+        .sort((a,b)=>a.avance-b.avance)
+        .map((a,i)=>`
         <div class="actividad">
           <div>
             <strong>${a.nombre}</strong><br>
-            <textarea placeholder="Comentario"
-              onchange="zonas[${zIndex}].actividades[${i}].comentario=this.value;saveData()">${a.comentario}</textarea>
+            <small>${a.fecha}</small><br>
+            <textarea placeholder="Observación"
+              onchange="zonas[${zIndex}].actividades[${i}].comentario=this.value;guardar()">${a.comentario}</textarea>
           </div>
 
-          <input type="number" value="${a.peso}"
-            onchange="zonas[${zIndex}].actividades[${i}].peso=this.value;saveData();render()">
+          <div>
+            <input type="checkbox"
+              ${a.avance>=100?"checked":""}
+              onchange="
+                zonas[${zIndex}].actividades[${i}].avance=this.checked?100:0;
+                guardar();render();
+              "> Hecho
+          </div>
 
-          <input type="number" value="${a.avance}"
-            onchange="zonas[${zIndex}].actividades[${i}].avance=this.value;saveData();render()">
-
-          <div class="estado">
-            <span class="semaforo ${semaforoEstado(a.avance)}"></span>
-            ${a.avance >= 100 ? "Hecho" : "En proceso"}
+          <div>
+            <span class="semaforo ${estado(a.avance)}"></span>
+            ${a.avance>=100?"Completado":"Pendiente"}
           </div>
         </div>
       `).join("")}
 
-      <button class="btn-small" onclick="addActividad(${zIndex})">+ Agregar actividad</button>
+      <input id="act-${zIndex}" placeholder="Nueva actividad">
+      <button onclick="crearActividad(${zIndex}, 'act-${zIndex}')">Agregar actividad</button>
     `;
 
-    app.appendChild(zonaDiv);
+    cont.appendChild(div);
   });
 }
 
 render();
+
