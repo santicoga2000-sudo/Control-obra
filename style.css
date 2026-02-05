@@ -162,6 +162,121 @@ button:active {
     align-items: flex-end;
   }
 
+}/* =========================
+   JERARQUÍA VISUAL
+========================= */
+
+.zona h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 12px;
 }
+
+.actividad-titulo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+/* =========================
+   ACTIVIDAD CARD
+========================= */
+
+.actividad {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #ffffff;
+  border-left: 6px solid #ff7a00;
+}
+
+.actividad textarea {
+  width: 100%;
+  margin-top: 6px;
+  border-radius: 8px;
+  padding: 6px;
+  font-size: 0.85rem;
+}
+
+/* =========================
+   FOOTER ACTIVIDAD
+========================= */
+
+.actividad-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  min-width: 90px;
+}
+
+.actividad-footer label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* =========================
+   SEMÁFORO
+========================= */
+
+.semaforo {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.semaforo.rojo { background: #d32f2f; }
+.semaforo.amarillo { background: #fbc02d; }
+.semaforo.verde { background: #388e3c; }
+
+/* =========================
+   BOTÓN ELIMINAR
+========================= */
+
+.btn-danger {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+}
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .actividad {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .actividad > div:first-child {
+    flex: 1;
+  }
+
+  .actividad-footer {
+    align-items: center;
+    min-width: 70px;
+  }
+
+  .actividad-footer label {
+    font-size: 0.75rem;
+  }
+
+  .btn-danger {
+    font-size: 0.7rem;
+    padding: 5px 8px;
+  }
+}
+
 
 
