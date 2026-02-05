@@ -87,50 +87,48 @@ function render() {
       ${zona.actividades
         .sort((a, b) => a.avance - b.avance)
         .map((a, i) => `
-        <div class="actividad">
-  <div class="actividad">
-  <div>
-   <div class="actividad-titulo">
-  ${i + 1}. ${a.nombre}
-</div>
+      <div class="actividad">
+
+  <div class="actividad-info">
+    <div class="actividad-titulo">
+      ${i + 1}. ${a.nombre}
+    </div>
 
     <small>${a.fecha}</small>
+
     <textarea
       placeholder="Observación"
       onchange="zonas[${zIndex}].actividades[${i}].comentario=this.value;guardar()"
     >${a.comentario}</textarea>
   </div>
 
-  <div>
-    <input type="checkbox"
+  <div class="actividad-footer">
+
+    <input class="check-actividad" type="checkbox"
       ${a.avance >= 100 ? "checked" : ""}
       onchange="
         zonas[${zIndex}].actividades[${i}].avance=this.checked?100:0;
         guardar();render();
       ">
+
+    <span>
+      <span class="semaforo ${estado(a.avance)}"></span>
+      ${a.avance >= 100 ? "Completado" : "Pendiente"}
+    </span>
+
+    <div class="barra-actividad">
+      <div class="barra-progreso ${estado(a.avance)}"
+           style="width:${a.avance}%"></div>
+    </div>
+
+    <button class="btn-danger"
+      onclick="eliminarActividad(${zIndex}, ${i})">
+      Eliminar
+    </button>
+
   </div>
 </div>
 
-          <div>
-            <input type="checkbox"
-              ${a.avance >= 100 ? "checked" : ""}
-              onchange="
-                zonas[${zIndex}].actividades[${i}].avance=this.checked?100:0;
-                guardar();render();
-              ">
-            Hecho
-          </div>
-
-          <div>
-            <span class="semaforo ${estado(a.avance)}"></span>
-            ${a.avance >= 100 ? "Completado" : "Pendiente"}
-            <br>
-            <button class="btn-danger"
-              onclick="eliminarActividad(${zIndex}, ${i})">
-              Eliminar
-            </button>
-          </div>
-        </div>
       `).join("")}
 
       <input id="act-${zIndex}" placeholder="Nueva actividad">
@@ -144,5 +142,6 @@ function render() {
 }
 
 render();
+
 
 
