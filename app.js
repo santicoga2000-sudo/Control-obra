@@ -88,14 +88,25 @@ function render() {
         .sort((a, b) => a.avance - b.avance)
         .map((a, i) => `
         <div class="actividad">
-          <div>
-            <strong>${i + 1}. ${a.nombre}</strong><br>
-            <small>${a.fecha}</small>
-            <textarea
-              placeholder="Observación"
-              onchange="zonas[${zIndex}].actividades[${i}].comentario=this.value;guardar()"
-            >${a.comentario}</textarea>
-          </div>
+  <div class="actividad">
+  <div>
+    <strong>${i + 1}. ${a.nombre}</strong><br>
+    <small>${a.fecha}</small>
+    <textarea
+      placeholder="Observación"
+      onchange="zonas[${zIndex}].actividades[${i}].comentario=this.value;guardar()"
+    >${a.comentario}</textarea>
+  </div>
+
+  <div>
+    <input type="checkbox"
+      ${a.avance >= 100 ? "checked" : ""}
+      onchange="
+        zonas[${zIndex}].actividades[${i}].avance=this.checked?100:0;
+        guardar();render();
+      ">
+  </div>
+</div>
 
           <div>
             <input type="checkbox"
