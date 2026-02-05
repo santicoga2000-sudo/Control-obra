@@ -89,3 +89,14 @@ button {
     grid-template-columns: 1fr;
   }
 }
+.btn-danger {
+  background: #DC2626;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+
