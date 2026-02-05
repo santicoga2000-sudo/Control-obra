@@ -1,4 +1,6 @@
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -7,60 +9,126 @@ body {
   color: #0A2540;
 }
 
+/* TOP BAR */
 .topbar {
   background: #0A2540;
   color: white;
   padding: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
+/* LAYOUT */
 .container {
-  padding: 20px;
+  padding: 16px;
   max-width: 1200px;
   margin: auto;
 }
 
+/* CARDS */
 .card {
   background: white;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
-.card h2 {
-  margin-top: 0;
+.card-form {
+  border-left: 6px solid #1F6FEB;
+}
+
+/* FORM */
+.form-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 input, textarea {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 10px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #D1D5DB;
 }
 
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* BUTTONS */
 button {
   background: #1F6FEB;
   color: white;
   border: none;
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
   cursor: pointer;
 }
 
+button:active {
+  transform: scale(0.98);
+}
+
+.btn-danger {
+  background: #DC2626;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ZONA */
 .zona {
-  margin-bottom: 30px;
+  border-left: 6px solid #0A2540;
 }
 
 .zona-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.zona-header h2 {
+  margin: 0;
+  font-size: 18px;
 }
 
 .zona-avance {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
 }
 
+/* ACTIVIDADES */
+.actividad {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #F9FAFB;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ACT HEADER */
+.actividad strong {
+  font-size: 15px;
+}
+
+/* CHECK + ESTADO */
+.actividad-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* SEMÁFORO */
 .semaforo {
   width: 14px;
   height: 14px;
@@ -73,30 +141,27 @@ button {
 .amarillo { background: #FACC15; }
 .verde { background: #16A34A; }
 
-.actividad {
-  display: grid;
-  grid-template-columns: 1fr 80px 120px;
-  gap: 10px;
-  align-items: center;
-  border-bottom: 1px solid #E5E7EB;
-  padding: 8px 0;
-}
+/* MOBILE FIRST — DESKTOP MEJORA */
+@media(min-width: 768px) {
 
-.actividad:last-child { border-bottom: none; }
-
-@media(max-width: 700px){
-  .actividad {
-    grid-template-columns: 1fr;
+  .form-row {
+    flex-wrap: nowrap;
   }
-}
-.btn-danger {
-  background: #DC2626;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
+
+  .actividad {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .actividad > div {
+    flex: 1;
+  }
+
+  .actividad-footer {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
 }
 
 
