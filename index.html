@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>JOIN · Control de Obra</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header class="topbar">
+    <h1>JOIN · Control de Avance</h1>
+  </header>
 
-<header class="topbar">
-  <h1>JOIN · Control de Avance</h1>
-</header>
+  <main class="container">
+    <!-- FORMULARIO ZONA -->
+    <section class="card">
+      <h2>Agregar zona</h2>
+      <input id="zonaNombre" placeholder="Nombre de la zona" />
+      <button id="btnCrearZona">Crear zona</button>
+    </section>
 
-<main class="container">
+    <!-- DASHBOARD -->
+    <section id="zonas"></section>
+  </main>
 
-  <section class="card card-form">
-    <h2>Agregar zona</h2>
-    <div class="form-row">
-      <input id="zonaNombre" placeholder="Nombre de la zona">
-      <button onclick="crearZona()">Crear zona</button>
+  <!-- Modal simple para previsualizar foto -->
+  <div id="fotoModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h3>Foto / Observación</h3>
+      <img id="fotoPreview" alt="preview" />
+      <p id="fotoMeta"></p>
+      <button id="modalCloseBtn">Cerrar</button>
     </div>
-  </section>
+  </div>
 
-  <section id="zonas"></section>
-
-</main>
-
-<script src="app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
-
